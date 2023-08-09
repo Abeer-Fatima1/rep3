@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculator</title>
+  <link rel="stylesheet" href="style1.css">
+  <script src="script.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+  <div class="main">
+    <div class="hh1" id="hh">
+   Scientific Calculator
+  </div>
+  <div class="calb" id="c1">
+    <div class="box1" id="boxi">
+      <input type="text" id="textInput" />
+      <input type="text" id="answer">
+    </div>
+  <input type="button" value="Exp" id="bb" onclick="display()">
+  <input type="button" name="ok" value="("  onclick="appendToInput('(')">
+  <input type="button" name="ok" value=")"  onclick="appendToInput(')')">
+  <input type="button" value="."  onclick="appendToInput('.')">
+  <input type="button" value="0" onclick="appendToInput('0')">
+  <input type="button"  name="ok1" value="AC"  onclick="EraseContent() ">
+  <input type="button"  name="ok1" value="CE"  onclick="removeLastCharacter()">
+  <input type="button" name="ok" value="e"   onclick="appendToInput('e')">
+  <input type="button" name="ok" value="pi"  onclick="appendToInput('pi')">
+  <input type="button" name="ok" value="sqrt"  onclick="appendToInput('sqrt(')">
+  <input type="button" value="1"  onclick="appendToInput('1')">
+  <input type="button" value="2"  onclick="appendToInput('2')">
+  <input type="button" value="3" onclick="appendToInput('3')">
+  <input type="button" name="ok" value="+"  onclick="appendToInput('+')">
+  <input type="button" name="ok" value="tan"  onclick="appendToInput('tan(')">
+  <input type="button" name="ok" value="sin"   onclick="appendToInput('sin(')">
+  <input type="button" name="ok" value="cos" onclick="appendToInput('cos(')">
+  <input type="button" value="4" onclick="appendToInput('4')">
+  <input type="button" value="5" onclick="appendToInput('5')">
+  <input type="button" value="6" onclick="appendToInput('6')">
+  <input type="button" name="ok" value="-"  onclick="appendToInput('-')">
+  <input type="button" name="ok" value="*"  onclick="appendToInput('*')">
+  <input type="button" name="ok" value="/"  onclick="appendToInput('/')">
+  <input type="button" name="ok" value="^"  onclick="appendToInput('^')">
+  <input type="button" value="7" onclick="appendToInput('7')">
+  <input type="button" value="8" onclick="appendToInput('8')">
+  <input type="button" value="9" onclick="appendToInput('9')">
+  <input type="button" name="ok2" value="=" onclick="infixToPostfix()">
+  <div class="box11" id="boxii">
+    Stored Variables
+    <input type="text" id="textInput1" />
+  </div>
+</div>
+<div class="secm" id="bb1">
+  <div class="d">
+    <div class="e1" id="e2">
+      Constant Already Defined!!!
+      <input type="button" id="bing" value="ok" onclick="ok()">
+    </div>
+    <div class="d1">
+    <div class="d11">Enter Variable Name:
+    <input type="text" placeholder="Enter text" id="d1">
+  </div>
+    <div class="d22">  Enter Variable Value:
+    <input type="text" placeholder="Enter text" id="d2">
+    <input type="submit" id="bb2" onclick="add()">
+  </div>
+    <input type="button" value="Close" style="box-shadow: none;" id="bb3" onclick="remove()">
+  </div>
+  </div>
+</div>
+</body>
+</html>
