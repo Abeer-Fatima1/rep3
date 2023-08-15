@@ -28,7 +28,7 @@ function removeLastCharacter() {
   const inputElement = document.getElementById("textInput");
   const currentValue = inputElement.value;
 
-  if (currentValue.length > 0) {
+  if (currentValue.length) {
     const newValue = currentValue.slice(0, -1);
     inputElement.value = newValue;
   }
