@@ -1,0 +1,776 @@
+*{
+  margin: 0;
+  padding:0;
+  }
+  
+.main{
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: linear-gradient(rgba(101, 103, 103, 0.7),rgba(192, 239, 242,0.3));
+    flex-direction: column;
+}
+
+.hh1{
+  display: flex;
+  color: white;
+  font-family:Arial, Helvetica, sans-serif;
+  font-size: 40px;
+  font-weight: 700;
+  height: 80px;
+  text-shadow:  0 0 2px #eeeeee, 0 0 3px palevioletred, 0 0 4px  palevioletred, 0 0 5px palevioletred, 
+  0 0 6px  palevioletred, 0 0 7px  palevioletred, 0 0 8px  palevioletred;
+}
+
+.calb{
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    width: 50vw;
+    height: 70vh;
+    column-gap: 10px;
+    row-gap: 10px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    grid-template-columns: auto auto auto auto auto auto;
+    border-radius: 20px;
+   background: linear-gradient(rgba(246, 141, 176, 0.9),rgba(203, 241, 241, 0.9),rgba(195, 243, 243, 0.9),rgba(246, 141, 176, 0.9));
+    font-family:Arial, Helvetica, sans-serif;
+    border: 3px solid rgb(94, 93, 93);
+}
+
+.box1{
+    height: 7vw;
+    grid-column: 1 / span7;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border: 3px solid rgb(94, 93, 93);
+}
+
+#textInput{
+  height: 100%;
+  width: 98.5%;
+  border: none;
+  border-radius: 10px;
+  text-align: right;
+  padding-right: 10px;
+  font-size: 30px;
+  color: palevioletred;
+  font-family:Arial, Helvetica, sans-serif;
+  font-weight: 700;
+}
+
+#answer{
+  display: none;
+  height: 50%;
+  border: none;
+  border-radius: 10px;
+  text-align: right;
+  font-size: 30px;
+  padding-right: 10px;
+  font-family:Arial, Helvetica, sans-serif;
+  font-weight: 700;
+}
+
+.box11{
+  height: 4vw;
+  grid-column: 1/span7;
+  border-radius: 10px;
+  display: none;
+  background-color: rgb(238, 86, 137);
+  color: white;
+  flex-direction: column;
+  border: 3px solid rgb(94, 93, 93);
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.box11 input[type=text]{
+  height: 100%;
+  border-radius: 10px;
+  padding-left: 10px;
+  border: 3px solid rgb(94, 93, 93);
+  color: palevioletred;
+  font-family:Arial, Helvetica, sans-serif;
+  font-weight: 700;
+}
+
+input[type=button]{
+  border-radius: 10px;
+  width: 6vw;
+  height: 10vh;
+  background-color: rgb(246, 95, 145);
+  color: white;
+  border: none;
+  font-size: 20px;
+  font-family:Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  box-shadow: 2px 2px black;
+}
+
+#bb{
+  height: 10vh;
+  width: 6vw;
+  border-radius: 10px;
+  border: none;
+  box-shadow: 2px 2px black;
+  background-color: rgb(90, 85, 85);
+  text-shadow:  0 0 2px #eeeeee, 0 0 3px rgb(255, 74, 135), 0 0 4px  rgb(255, 74, 135), 0 0 5px rgb(255, 74, 135), 
+  0 0 6px  rgb(255, 74, 135), 0 0 7px  rgb(255, 74, 135), 0 0 8px  rgb(255, 74, 135);
+  font-weight: 700; 
+}
+
+
+input[type=button]:active {
+    transform: scale(0.95); 
+  }
+
+  #bb:active {
+    transform: scale(0.95); 
+  }
+
+  
+  input[type=button]:hover{
+    background-color: rgb(238, 61, 120);
+    font-size: 22px;
+  }
+
+  #bb:hover {
+    background-color: rgb(60, 59, 59);
+    font-size: 22px; 
+    }
+
+input[name="ok"]
+{
+  background-color: rgb(90, 85, 85);
+  box-shadow: 2px 2px black;
+  text-shadow:  0 0 2px #eeeeee, 0 0 3px rgb(255, 74, 135), 0 0 4px  rgb(255, 74, 135), 0 0 5px rgb(255, 74, 135), 
+  0 0 6px  rgb(255, 74, 135), 0 0 7px  rgb(255, 74, 135), 0 0 8px  rgb(255, 74, 135);
+}
+
+input[name="ok1"]
+{
+  box-shadow: 2px 2px black;
+  background-color:rgb(231, 55, 55);
+}
+
+input[name="ok2"]
+{
+  box-shadow: 2px 2px black;
+  background-color:rgb(75, 180, 255); 
+}
+
+input[name="ok"]:hover
+{
+   background-color: rgb(60, 59, 59);;
+}
+
+input[name="ok1"]:hover
+{
+   background-color: rgb(255, 0, 0);
+}
+
+input[name="ok2"]:hover
+{
+   background-color: rgb(35, 153, 237); 
+}
+
+  .secm{
+    display: none;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    background: linear-gradient( rgba(235, 57, 116, 0.8),rgba(216, 112, 147, 0.3));
+  }
+
+  .d{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50vw;
+    height: 70vh;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    border-radius: 20px;
+    color: palevioletred;
+    font-size: 20px;
+  }
+
+  .d1{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50vw;
+    height: 70vh;
+    background: linear-gradient(rgba(31, 30, 31, 0.8),rgba(53, 52, 53, 0.8));
+    padding-top: 12px;
+    padding-bottom: 12px;
+    border-radius: 20px;
+    color: palevioletred;
+    font-size: 20px;
+    border-style:double;
+    border-color: white;
+  }
+
+  .d11{
+    width: 30.5vw;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-family:Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    padding-bottom: 5px;
+  }
+
+  .d22{
+    width: 30.5vw;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    font-family:Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    margin-top: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px double white;
+  }
+
+ .d input[type=text]{
+    width: 30vw;
+    height: 4vh;
+    border-radius: 5px;
+    padding-left: 10px;
+    border-color: white;
+  }
+
+  .d input[type=submit]{
+    width: 10vw;
+    height: 5vh;
+    background-color: palevioletred;
+    color:white;
+    border: none;
+    margin-top: 20px;
+    border-radius: 5px;
+    font-weight: 700;
+  }
+
+  .d input[type=submit]:hover{
+    background-color: rgb(233, 152, 179);
+    font-size: 18px;
+    width: 10.2vw;
+    height: 5.2vh;
+  }
+
+  #bb3{
+    width: 10vw;
+    height: 5vh;
+    background-color: palevioletred;
+    color:white;
+    border: none;
+    margin-top: 20px;
+    border-radius: 5px;
+    font-weight: 700;
+    font-size: 13px;
+  }
+
+  #bb3:hover{
+    background-color: rgb(233, 152, 179);
+    font-size: 18px;
+    width: 10.2vw;
+    height: 5.2vh;
+  }
+
+  .e1{
+    display: none;
+    position: absolute;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    background-color: rgb(66, 64, 64);
+    border-radius: 5px;
+    color: white;
+    width: 20vw;
+    height: 20vh;
+    border: 2px double white;
+  }
+
+  #bing[type=button]{
+    border-radius: 10px;
+    width: 6vw;
+    height: 6vh;
+    background-color: palevioletred;
+    color: white;
+    border: none;
+    margin-top: 20px;
+    font-size: 18px;
+    font-family:Arial, Helvetica, sans-serif;
+    font-weight: 700;
+  }
+
+  @media screen and (max-width:1253px) {
+    #textInput{
+      width: 98%;
+    }
+  }
+ 
+  @media screen and (max-width:1040px) {
+  #textInput{
+    width: 97.9%;
+  }
+}
+
+  @media screen and (max-width:1023px) {
+    .calb{
+      width:60vw;
+    }
+
+    input[type=button]{
+      height: 8vh;
+    }
+
+    #bb{
+      height: 8vh;
+    }
+    
+  }
+
+  @media screen and (max-width:991px) {
+    .d{
+      width:75vw;
+    }
+
+    .d1{
+      width:75vw;
+    }
+
+    .d11{
+      width: 40.5vw;
+    }
+
+    .d22{
+      width: 40.5vw;
+    }
+
+    .d input[type=text]{
+      width: 38.5vw;
+    }
+    
+  }
+
+  @media screen and (max-width:924px) {
+    #textInput{
+      width: 97.6%;
+    }
+  }
+
+  @media screen and (max-width:932px) {
+    .calb{
+      height:60vh;
+    }
+    
+  }
+
+  @media screen and (max-width:860px) {
+    .calb{
+      height:50vh;
+    }
+
+    input[type=button]{
+      height: 6vh;
+    }
+
+    #bb{
+      height: 6vh;
+    }
+    
+  }
+
+  @media screen and (max-width:726px) {
+    .box11{
+      padding-bottom: 20px;
+    }
+    
+  }
+
+  @media screen and (max-width:718px) {
+    .calb{
+      height:45vh;
+      width: 60vw;
+      column-gap: 5px;
+    }
+
+    #textInput{
+      width: 55vw;
+    }
+
+    #answer{
+      width: 55vw;
+    }
+
+    input[type=button]{
+      height: 5vh;
+      font-size:13px;
+    }
+
+    #bb{
+      height: 5vh;
+      font-size:13px;
+    }
+
+    input[type=button]:hover{
+      font-size: 18px;
+    }
+  
+    #bb:hover {
+      font-size: 18px;
+      }
+    
+  }
+
+  @media screen and (max-width:660px) {
+    .d1{
+      height: 50vh;
+    }
+  
+    .d11{
+      font-size: 15px;
+    }
+  
+    .d22{
+      font-size: 15px;
+    }
+}
+
+  @media screen and (max-width:615px) {
+    .calb{
+      height:40vh;
+      width: 65vw;
+    }
+  }
+
+  @media screen and (max-width:628px) {
+    #answer{
+      font-size:20px;
+    }
+  }
+
+  @media screen and (max-width:538px) {
+    .calb{
+      height:40vh;
+      width: 60vw;
+    }
+
+    input[type=button]{
+      height: 4vh;
+      font-size: 10px;
+      border-radius: 0px;
+    }
+
+    #bb{
+      height: 4vh;
+      font-size: 10px;
+      border-radius: 0px;
+    }
+
+    input[type=button]:hover{
+      font-size: 16px;
+    }
+  
+    #bb:hover {
+      font-size: 16px;
+      }
+}
+
+
+  @media screen and (max-width:525px) {
+    .box11{
+      padding-bottom: 30px;
+    }
+
+    .box1{
+      height: 6vh;
+    }
+    
+  }
+
+  @media screen and (max-width:496px) {
+    .d1{
+      height: 40vh;
+    }
+  
+    .d11{
+      font-size: 12px;
+    }
+  
+    .d22{
+      font-size: 12px;
+    }
+
+    .d input[type=submit]{
+      font-size: 10px;
+    }
+  
+    #bb3{
+      font-size: 10px;
+    }
+
+    .d input[type=text]{
+      height: 3vh;
+    }
+  }
+
+  @media screen and (max-width:470px) {
+    .calb{
+      width: 65vw;
+      column-gap: 5px;
+    }
+  }
+
+  @media screen and (max-width:453px) {
+    .calb{
+      column-gap: 5px;
+    }
+
+    .hh1{
+      font-size: 30px;
+    }
+
+    input[type=button]{
+      height: 4vh;
+    }
+
+    #bb{
+      height: 4vh;
+    }
+    
+  }
+
+  @media screen and (max-width:450px) {
+    .box1{
+      height: 5vh;
+    }
+    
+  }
+
+  @media screen and (max-width:421px) {
+    .calb{
+      height: 35vh;
+      width: 65vw;
+    }
+
+    .hh1{
+      font-size: 25px;
+    }
+
+    input[type=button]{
+      height: 3vh;
+      font-size: 8px;
+    }
+
+    #bb{
+      height: 3vh;
+      border-radius: 0px;
+      font-size: 8px;
+    }
+
+    input[type=button]:hover{
+      font-size: 12px;
+    }
+  
+    #bb:hover {
+      font-size: 12px;
+      }
+    
+  }
+
+  @media screen and (max-width:397px) {
+    .d1{
+      height: 30vh;
+    }
+  
+    .d11{
+      font-size: 10px;
+    }
+  
+    .d22{
+      font-size: 10px;
+    }
+
+    .d input[type=submit]{
+      font-size: 10px;
+      height: 3.2vh;
+    }
+
+    .d input[type=text]{
+      height: 2vh;
+    }
+  
+    #bb3{
+      height: 3vh;
+      font-size: 10px;
+    }
+  }
+
+  @media screen and (max-width:393px) {
+    .d input[type=submit]{
+      font-size: 8px;
+    }
+  }
+
+  @media screen and (max-width:369px) {
+    .calb{
+      height: 30vh;
+      width: 70vw;
+      row-gap: 0px;
+      column-gap: 0px;
+      } 
+
+      input[type=button]{
+       width: 8vw;
+      }
+
+      #bb{
+       width: 8vw;
+      }
+  }
+
+  @media screen and (max-width:358px) {
+    #textInput{
+      width: 94.6%;
+    }
+
+    #answer{
+      width: 94.6%;
+    }
+
+    .calb{
+      width: 80vw;
+      } 
+
+      .box1{
+        width: 64vw;
+      }
+  }
+
+  @media screen and (max-width:331px) {
+    .d1{
+      height: 30vh;
+    }
+  
+    .d11{
+      font-size: 8px;
+    }
+  
+    .d22{
+      font-size: 8px;
+    }
+  }
+
+  @media screen and (max-width:1147px) {
+    .e1{
+      font-size: 18px;
+      width: 20vw;
+      height: 20vh;
+      border: 2px double white;
+    }
+  
+    #bing[type=button]{
+      width: 5vw;
+      height: 5vh;
+      font-size: 15px;
+    }
+    
+  }
+
+  @media screen and (max-width:1033px) {
+    .e1{
+      font-size: 15px;
+    }
+  
+    #bing[type=button]{
+      width: 5vw;
+      height: 5vh;
+      font-size: 12px;
+    }
+    
+  }
+
+  @media screen and (max-width:898px) {
+    .e1{
+      font-size: 15px;
+      width: 30vw;
+    }
+  
+    #bing[type=button]{
+      width: 5vw;
+      height: 5vh;
+      font-size: 12px;
+    }
+    
+  }
+
+  @media screen and (max-width:660px)
+  {
+    #bing[type=button]{
+      width: 12vw;
+      height: 5vh;
+      font-size: 12px;
+    }
+  }
+
+  @media screen and (max-width:605px) {
+    .e1{
+      font-size: 15px;
+      width: 40vw;
+    }
+  
+    #bing[type=button]{
+      width: 10vw;
+      height: 5vh;
+      font-size: 12px;
+    }
+    
+  }
+
+  
+  @media screen and (max-width:431px) {
+    .e1{
+      font-size: 12px;
+      width: 40vw;
+      width: 45vw;
+      height: 15vh;
+    }
+  
+    #bing[type=button]{
+      width: 10vw;
+      height: 5vh;
+      font-size: 12px;
+    }
+    
+  }
+
+  @media screen and (max-width:353px) {
+    .e1{
+      font-size: 12px;
+      width: 45vw;
+      height: 15vh;
+    }
+  
+    #bing[type=button]{
+      width: 15vw;
+      height: 5vh;
+      font-size: 12px;
+    }
+    
+  }
