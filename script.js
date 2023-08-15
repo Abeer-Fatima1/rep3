@@ -1,147 +1,66 @@
-const myobj={};
+const myobj = {};
 
 function appendToInput(value) {
-    const textInput = document.getElementById('textInput');
+  const arr = ["+", "-", "*", "/", "^", "sqrt(", "cos(", "tan(", ")", "sin(", "pi", "e", "("];
+  const arr1 = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "e", "pi"];
+  const arr2 = ["+", "-", "*", "/", "^"];
+  const arr3 = ["sqrt(", "cos(", "tan(", "sin(", "pi", "e"];
+  const arr4 = ["e", "i", ")"];
+  const arr5 = ["cos(", "tan(", "sin("];
+  const arr6 = ["+", "-", "/", "^"];
 
-    const s = Array.from(textInput.value);
-
-    if(value !== "+" && value !== "-" && value !== "*" && value !== "/" && value !== "^" &&
-      value !== "sqrt(" && value !== "sin(" && value !== "cos(" && value !== "tan(" && value !== ")"  && value !== "pi"  && value !== "e")
-      {
-        const v = Number(value);
-        if(s[s.length-1] === ")")
-        {
-          textInput.value += value;
-          const w = Array.from(textInput.value);
-          w.splice(w.length-1,0,"*")
-          const result = w.join('');
-          textInput.value = result;
-          return;
-        }
-
-        if(s[s.length-1] === "i")
-        {
-          textInput.value += value;
-          const w = Array.from(textInput.value);
-          w.splice(w.length-1,0,"*")
-          const result = w.join('');
-          textInput.value = result;
-          return;
-        }
-
-        if(s[s.length-1] === "e")
-        {
-          textInput.value += value;
-          const w = Array.from(textInput.value);
-          w.splice(w.length-1,0,"*")
-          const result = w.join('');
-          textInput.value = result;
-          return;
-        }
-      }
-
-      if(value !== "+" && value !== "-" && value !== "*" && value !== "/" && value !== "^" &&
-      value === "sqrt(" || value === "sin(" || value === "cos(" || value === "tan("  || value === "pi"  || value === "e")
-      {
-        if(s[s.length-1] === "0" || s[s.length-1] === "1"  || s[s.length-1] === "2"  || s[s.length-1] === "3"  || s[s.length-1] === "4"  || s[s.length-1] === "5"  || s[s.length-1] === "6" || s[s.length-1] === "7" || s[s.length-1] === "8" || s[s.length-1] === "9" || s[s.length-1] === ")" ||s[s.length-1] === "i" || s[s.length-1] === "e" )
-        {
-          if(value == "sqrt(")
-          {
-          textInput.value += value;
-          const w = Array.from(textInput.value);
-          w.splice(w.length-5,0,"*")
-          const result = w.join('');
-          textInput.value = result;
-          return;
-          }
-
-          if(value == "e")
-          {
-          textInput.value += value;
-          const w = Array.from(textInput.value);
-          w.splice(w.length-1,0,"*")
-          const result = w.join('');
-          textInput.value = result;
-          return;
-          }
-
-          
-          if(value == "pi")
-          {
-          textInput.value += value;
-          const w = Array.from(textInput.value);
-          w.splice(w.length-2,0,"*")
-          const result = w.join('');
-          textInput.value = result;
-          return;
-          }
-        }
-
-          textInput.value += value;
-          const w = Array.from(textInput.value);
-          w.splice(w.length-4,0,"*")
-          const result = w.join('');
-          textInput.value = result;
-          return;
-        }
-
-        if(value == "(")
-        {
-        if(s[s.length-1] === "0" || s[s.length-1] === "1"  || s[s.length-1] === "2"  || s[s.length-1] === "3"  || s[s.length-1] === "4"  || s[s.length-1] === "5"  || s[s.length-1] === "6" || s[s.length-1] === "7" || s[s.length-1] === "8" || s[s.length-1] === "9" || s[s.length-1] === ")" ||s[s.length-1] === "i" || s[s.length-1] === "e" )
-        {
-          textInput.value += value;
-          const w = Array.from(textInput.value);
-          w.splice(w.length-1,0,"*")
-          const result = w.join('');
-          textInput.value = result;
-          return;
-        }
-      }
-
-    textInput.value += value;  
+  const exp = Optimize(value, arr, arr1, arr2, arr3, arr4, arr5,arr6);
 }
 
 function EraseContent() {
-    const destinationDiv = document.getElementById('textInput');
-    const destinationDiv1 = document.getElementById('answer');
-    destinationDiv.value = "";
-    destinationDiv1.value = "";
-    const textInput1 = document.getElementById('answer');
-    textInput1.style.display = "none";
-    const textInput = document.getElementById('textInput');
-    textInput.style.height = "100%";
-    textInput.style.fontSize = "30px";
+  const destinationDiv = document.getElementById('textInput');
+  const destinationDiv1 = document.getElementById('answer');
+  destinationDiv.value = "";
+  destinationDiv1.value = "";
+  const textInput1 = document.getElementById('answer');
+  textInput1.style.display = "none";
+  const textInput = document.getElementById('textInput');
+  textInput.style.height = "100%";
+  textInput.style.fontSize = "30px";
 }
 
 function removeLastCharacter() {
   const inputElement = document.getElementById("textInput");
   const currentValue = inputElement.value;
 
-  if (currentValue.length > 0) 
-  {
+  if (currentValue.length > 0) {
     const newValue = currentValue.slice(0, -1);
     inputElement.value = newValue;
   }
 }
 
 function precedence(operator) {
-  if (operator === '+' || operator === '-') 
-    return 1;
+  switch (operator) {
+    case '+':
+    case '-':
+      return 1;
 
-  if (operator === '*' || operator === '/') 
-    return 2;
+    case '*':
+    case '/':
+      return 2;
 
-  if (operator === 'sin' || operator === 'cos' || operator === 'tan' || operator === 'sqrt') 
-    return 3;
+    case 'sin':
+    case 'cos':
+    case 'tan':
+    case 'sqrt':
+      return 3;
 
-  if (operator === '^') 
-    return 4;
-  
-  return 0;
+    case '^':
+      return 4;
+
+    default:
+      return 0;
+  }
 }
 
 function isOperator(token) {
-  return ['+', '-', '*', '/', 'sin', 'cos', 'tan', 'sqrt','^'].includes(token);
+  const arr2 = ['+', '-', '*', '/', 'sin', 'cos', 'tan', 'sqrt', '^'];
+  return arr2.includes(token);
 }
 
 function evaluateOperator(operator, operand1, operand2) {
@@ -156,14 +75,13 @@ function evaluateOperator(operator, operand1, operand2) {
       return (Number(operand1) * Number(operand2)).toFixed(4);
 
     case '/':
-      if(operand2 == 0)
-      {
+      if (operand2 == 0) {
         return "Math Error";
       }
       return (Number(operand1) / Number(operand2)).toFixed(4);
 
     case '^':
-        return Math.pow(Number(operand1), Number(operand2));
+      return Math.pow(Number(operand1), Number(operand2));
 
     case 'sin':
       return Math.sin(Number(operand2) * (Math.PI / 180)).toFixed(4);
@@ -172,8 +90,7 @@ function evaluateOperator(operator, operand1, operand2) {
       return Math.cos(Number(operand2) * (Math.PI / 180)).toFixed(4);
 
     case 'tan':
-      if(operand2 == 90)
-      {
+      if (operand2 == 90) {
         return "Undefined";
       }
       return Math.tan(Number(operand2) * (Math.PI / 180)).toFixed(4);
@@ -192,199 +109,182 @@ function infixToPostfix() {
   textInput.style.fontSize = "17px";
   const textInput1 = document.getElementById('answer');
   textInput1.style.display = "flex";
-  const expression = textInput.value; 
+  const expression = textInput.value;
   const output = [];
   const operatorStack = [];
 
   let tokens1;
 
-  w2 =  Array.from(expression);
-  w3 =  Array.from(expression);
+  w2 = Array.from(expression);
+  w3 = Array.from(expression);
 
-  for(var i = 0; i < w3.length ; i++)
-  {
-  var j = 0;
-  
-    if(w3[i] === "(" && w3[j+i+1] === "+")
-    {
-      w3.splice(i,1);
+  w3.forEach((elm, index) => {
+
+    const nextindx = w3[index + 1];
+    const nextindx1 = w3[index + 2];
+    if (elm === "(" && nextindx === "+") {
+      w3.splice(index + 1, 1);
       const result = w3.join('');
       w2 = w3;
-
-      if(w3[j+i+2] === ")")
-      {
-        w3.splice(j+i+2,1);
-        const result = w3.join('');
-        w2 = w3;
-      }
     }
+  })
+
+  switch (w2[0]) {
+    case "+":
+      w2.splice(0, 1);
+      const result = w2.join('');
+      tokens1 = result;
+      break;
+
+    default:
+      tokens1 = w2.join("");
   }
 
-  if(w2[0] === "+")
-  {
-    w2.splice(0,1);
-    const result = w2.join('');
-    tokens1 = result;
-  }
-  else
-  {
-    tokens1 = w2.join("");
-  }
-
-  tokens = tokens1.match(/(?:sin|cos|tan|sqrt|\b[A-Za-z0-9.]{1,9}(?![\d.])\b|\^|\b[+\-*/()]\b|e|pi|((?:\d+(?:\.\d)?|\.\d+|[+\-*/()])))?/g);
-  const w1 = Array.from(tokens);
+  const tokens = tokens1.match(/(?:sin|cos|tan|sqrt|\b[A-Za-z0-9.]{1,9}(?![\d.])\b|\^|\b[+\-*/()]\b|e|pi|(-?(?:\d+(?:\.\d)?|\.\d+|[+\-*/()])))?/g);
+  const num2 = tokens.toString();
+  const w1 = num2.split(",");
   const w = w1.filter(Boolean);
 
-  if(w[w.length-1] == "+" || w[w.length-1] == "-" || w[w.length-1] == "/" || w[w.length-1] == "*" || w[w.length-1] == "^")
-  {
+  const arr = ["+", "-", "/", "*", "^"];
+  const len = w[w.length - 1];
+
+  if (arr.includes(len)) {
     const ans = document.getElementById('answer');
     ans.value = "Invalid Input";
     return;
   }
 
-  if(w[w.length-1] == "(")
-  {
+  if (len == "(") {
     const ans = document.getElementById('answer');
     ans.value = "Invalid Input";
     return;
   }
 
-for(var i = 0; i < w.length ; i++)
-{
-  var j = 0;
+  w.forEach((token, index) => {
+    if (token === ")") {
+      const next = w[index + 1];
+      if (!isNaN(Number(next))) {
+        if (Number(next) < 0) {
+          var positiveNumber = Math.abs(next);
+          w.splice(index + 1, 1);
+          w.splice(index + 1, 0, "-");
+          w.splice(index + 2, 0, positiveNumber)
+        }
+      }
+    }
+  });
 
-  if(w[i] === ")" && ( w[j+i-1] === "+" || w[j+i-1] === "-" || w[j+i-1] === "*" || w[j+i-1] === "/" || w[j+i-1] === "^"))
-  {
-    const ans = document.getElementById('answer');
-    ans.value = "Invalid Input";
-    return;
-  }
-
-  if(w[i] === "(" && ( w[j+i+1] === "*" || w[j+i+1] === "/" || w[j+i+1] === "^"))
-  {
-    const ans = document.getElementById('answer');
-    ans.value = "Invalid Input";
-    return;
-  }
-
-  else if(( w[i] === "+" || w[i] === "-" || w[i] === "*" || w[i] === "/" || w[i] === "^") && ( w[j+i-1] === "+" || w[j+i-1] === "-" || w[j+i-1] === "*" || w[j+i-1] === "/" || w[j+i-1] === "^"))
-  {
-    const ans = document.getElementById('answer');
-    ans.value = "Invalid Input";
-    return;
-  }
-
-  else if(w[i] === ")" &&  w[j+i-1] === "(" )
-  {
-    const ans = document.getElementById('answer');
-    ans.value = "Invalid Input";
-    return; 
-  }
-}
-
-  for (var token of tokens) {
-    for(var key in myobj)
-    {
-      if(token == key)
-      {
+  w.forEach((token) => {
+    const keys = Object.keys(myobj);
+    keys.map((key) => {
+      if (token == key) {
         token = myobj[key];
       }
+    });
+
+    switch (token) {
+      case "pi":
+        token = 3.1415;
+        break;
+
+      case "e":
+        token = 2.7182;
+        break;
     }
 
-    if(token == "pi")
-    {
-      token = 3.1415;
-    }
-    if(token == "e")
-    {
-      token = 2.7182;
-    }
+    switch (true) {
 
-    if (!isNaN(parseFloat(token)))
-    {
-      output.push(parseFloat(token)); 
-    }
-       
-    else if (token === '(') 
-    {
-      operatorStack.push(token);
-    }
+      case !isNaN(parseFloat(token)):
+        output.push(parseFloat(token));
+        break;
 
-    else if (token === ')') 
-    {
-      while (operatorStack.length > 0 && operatorStack[operatorStack.length - 1] !== '(') {
-        output.push(operatorStack.pop());
-      }
-      operatorStack.pop(); 
-    }
-    
-    else if (isOperator(token)) 
-    {
-      while (
-        operatorStack.length > 0 &&
-        precedence(operatorStack[operatorStack.length - 1]) >= precedence(token)
-      ) 
-      {
-        output.push(operatorStack.pop());
-      }
-      operatorStack.push(token);
-    } 
-  }
+      case token === '(':
+        operatorStack.push(token);
+        break;
 
-  while (operatorStack.length > 0)
-  {
+      case token === ')':
+        while (operatorStack.length > 0 && operatorStack[operatorStack.length - 1] !== '(') {
+          output.push(operatorStack.pop());
+        }
+        operatorStack.pop();
+        break;
+
+      case isOperator(token):
+        while (
+          operatorStack.length > 0 &&
+          precedence(operatorStack[operatorStack.length - 1]) >= precedence(token)
+        ) {
+          output.push(operatorStack.pop());
+        }
+        operatorStack.push(token);
+        break;
+    }
+  });
+
+  while (operatorStack.length > 0) {
     output.push(operatorStack.pop());
   }
 
-  const tokensi = output.join(" ");
-  const expression1 = tokensi.split(/\s+/);
-  console.log(expression1);
-  evaluatePostfix(expression1);
+
+  const tokensi = output;
+  evaluatePostfix(tokensi);
 }
 
 function evaluatePostfix(postfix) {
   const stack = [];
 
-  for (const token of postfix) 
-  {
-    if (!isNaN(parseFloat(token))) 
-    {
-      stack.push(token); 
-    } 
+  postfix.forEach((token) => {
+    if (!isNaN(parseFloat(token))) {
+      stack.push(token);
+    }
 
-    else if (isOperator(token)) 
-    {
-      if (token !== 'sin' && token !== 'cos' && token !== 'tan' && token !== 'sqrt') 
-      {
-        if( stack.length == 1 || token == "-" )
-        {
-            var operand1 = stack.pop();
-            stack.push(-operand1);
+    else if (isOperator(token)) {
+      if (token !== 'sin' && token !== 'cos' && token !== 'tan' && token !== 'sqrt') {
+        if (stack.length < 0 && token == "-") {
+          stack.push("-");
+          var n = 1;
         }
 
-        else
-        {
-        const operand2 = stack.pop();
-        var operand1 = stack.pop();
-        const result = evaluateOperator(token, operand1, operand2);
-        stack.push(result);
+        else {
+          const operand2 = stack.pop();
+          if (n == 1) {
+            const operand4 = stack.pop();
+            const operand3 = stack.pop();
+            const operand1 = operand3 + operand4;
+            const result = evaluateOperator(token, operand1, operand2);
+            stack.push(result);
+          }
+          else {
+            const operand1 = stack.pop();
+            const result = evaluateOperator(token, operand1, operand2);
+            stack.push(result);
+          }
         }
       }
 
-      else 
-      {
+      else {
         const operand2 = stack.pop();
         const result = evaluateOperator(token, null, operand2);
         stack.push(result);
       }
+
     }
-  }
+  });
+
+  const poppedValue = stack.pop();
   const ans = document.getElementById('answer');
-  ans.value = "Ans: "+stack.pop();
+
+  if (poppedValue !== undefined && poppedValue !== "NaN") {
+    ans.value = "Ans: " + poppedValue;
+  }
+
+  else {
+    ans.value = "Invalid Input";
+  }
+
 }
 
-function display()
-{
+function display() {
   const myElement = document.getElementById('bb1');
   const myElement1 = document.getElementById('c1');
   const myElement2 = document.getElementById('hh');
@@ -393,14 +293,12 @@ function display()
   myElement2.style.display = 'none';
 }
 
-function add()
-{
+function add() {
   const myElement3 = document.getElementById('d1');
   const myElement4 = document.getElementById('d2');
-  
 
-  if(myElement3.value == "pi" || myElement3.value == "e")
-  {
+
+  if (myElement3.value == "pi" || myElement3.value == "e") {
     const myElement5 = document.getElementById('e2');
     myElement5.style.display = 'flex';
     return;
@@ -412,11 +310,10 @@ function add()
   const myElement = document.getElementById('hh');
   myElement.style.display = 'flex';
 
-  if(myElement3.value != "")
-  {
+  if (myElement3.value != "") {
     const myElement1 = document.getElementById('boxii');
     const myElement = document.getElementById('textInput1');
-    myElement.value += myElement3.value+" ";
+    myElement.value += myElement3.value + " ";
     myElement1.style.display = 'flex';
   }
 
@@ -425,8 +322,7 @@ function add()
   myElement4.value = "";
 }
 
-function remove()
-{
+function remove() {
   const myElement1 = document.getElementById('bb1');
   myElement1.style.display = 'none';
   const myElement2 = document.getElementById('c1');
@@ -435,8 +331,74 @@ function remove()
   myElement.style.display = 'flex';
 }
 
-function ok()
-{
+function removepopUP() {
   const myElement5 = document.getElementById('e2');
   myElement5.style.display = 'none';
+}
+
+function Optimize(value, arr, arr1, arr2, arr3, arr4, arr5,arr6) {
+  const textInput = document.getElementById('textInput');
+  const s = Array.from(textInput.value);
+
+  const len = s[s.length - 1];
+
+  switch (true) {
+    case !arr.includes(value):
+      textInput.value += value;
+      const w = Array.from(textInput.value);
+      const len1 = w.length - 1;
+
+      if (arr4.includes(len)) {
+        w.splice(len1, 0, "*")
+      }
+
+      const result = w.join('');
+      textInput.value = result;
+      break;
+
+    case value === "(":
+      textInput.value += value;
+      const w1 = Array.from(textInput.value);
+      if (arr1.includes(len)) {
+        w1.splice(w1.length - 1, 0, "*")
+      }
+      const result1 = w1.join('');
+      textInput.value = result1;
+      break;
+
+    case !(arr2.includes(value)) && arr3.includes(value):
+      if (arr1.includes(len) || (!arr6.includes(len) && textInput.value !== "" && len !== "(")) {
+        textInput.value += value;
+        const w = Array.from(textInput.value);
+        switch (value) {
+          case "sqrt(":
+            const len1 = w.length - 5;
+            w.splice(len1, 0, "*")
+            break;
+
+
+          case "e":
+            const len2 = w.length - 1;
+            w.splice(len2, 0, "*")
+            break;
+
+          case "pi":
+            const len3 = w.length - 2;
+            w.splice(len3, 0, "*")
+            break;
+        }
+
+        if (arr5.includes(value)) {
+          const len4 = w.length - 4;
+          w.splice(len4, 0, "*");
+        }
+
+        const result = w.join('');
+        textInput.value = result;
+        break;
+      }
+
+    default:
+      textInput.value += value;
+  }
 }
